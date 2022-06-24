@@ -1,8 +1,6 @@
 <?php
 namespace application\models;
 use PDO;
-
-
 //$pdo -> lastInsertId();
 
 class UserModel extends Model {
@@ -25,7 +23,7 @@ class UserModel extends Model {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindValue(":email", $param["email"]);        
         $stmt->execute();
-        return $stmt->fech(PDO::FETCH_OBJ);
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
     
 }
