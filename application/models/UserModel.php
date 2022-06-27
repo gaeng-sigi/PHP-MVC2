@@ -15,7 +15,7 @@ class UserModel extends Model {
         $stmt->bindValue(":nm", $param["nm"]);
         $stmt->execute();
         return $stmt->rowCount();
-
+        
     }
     public function selUser(&$param) {
         $sql = "SELECT * FROM t_user
