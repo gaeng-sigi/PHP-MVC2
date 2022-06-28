@@ -15,4 +15,14 @@ class FeedModel extends Model {
 
         return intval($this->pdo->lastInsertId());
     }
+
+    public function insFeedImg(&$param) {
+        $sql = "INSERT INTO t_feed_img(ifeed, img)
+                VALUES(:ifeed, :img)";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array($param["ifeed"], $param["img"]));
+        
+        return $stmt->rowCount();
+    }
 }
