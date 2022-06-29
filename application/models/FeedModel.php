@@ -54,4 +54,13 @@ class FeedModel extends Model {
         $stmt->execute(array($param["iuser"], $param["startIdx"], _FEED_ITEM_CNT));
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public function selFeedImgList($param) {
+        $sql = "SELECT img FROM t_feed_img WHERE ifeed = :ifeed";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(array($param->ifeed));
+        
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+
+    }
 }

@@ -4,6 +4,8 @@
         const modal = document.querySelector("#newFeedModal");
         const body = modal.querySelector("#id-modal-body");
         const frmElem = modal.querySelector("form");
+        const btnClose = modal.querySelector(".btn-close");
+        console.log(btnClose);
 
     //이미지 값이 변하면
         frmElem.imgs.addEventListener("change", function (e) {
@@ -50,6 +52,10 @@
                     .then((res) => res.json())
                     .then((myJson) => {
                         console.log(myJson);
+
+                        if (myJson.result) {
+                            btnClose.click();
+                        }
                     });
                 });
             }
@@ -104,7 +110,7 @@
         makeFeedItem: function(item) {
             console.log(item);
             const divContainer = document.createElement('div');
-            divContainer.className = 'item mt-3 mb-3';
+            divContainer.className = "item mt-3 mb-3";
 
             const divTop = document.createElement('div');
             divContainer.appendChild(divTop);
@@ -122,9 +128,32 @@
                 </div>
                 <div class="p-3 flex-grow-1">
                     <div><span class="pointer" onclick="moveToProfile(${item.iuser});">${item.writer}</span> - ${regDtInfo}</div>
-                    <div>${item.location === null ? '' : item.location}</div>
+                    <div>${item.location === null ? "" : item.location}</div>
                 </div>
             `;
+
+            const divImgSwiper = document.createElement('div');
+            divContainer.appendChild(divImgSwiper);
+            divImgSwiper.className = 'swiper item_img';
+            divImgSwiper.innerHTML = `
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            `;
+
+            const divSwiperWrapper = divImgSwiper.querySelector('.swiper-wrapper');
+
+            // TO DO : imgList forEach 돌릴 예정.
+            const imgObj = item.imgList[0];
+            const divSwiperSlide = document.createElement('div');
+            divSwiperWrapper.appendChild(divSwiperSlide);
+            divSwiperSlide.classList.add('swiper-slide');
+
+            const img = document.createElement('img');
+            divSwiperSlide.appendChild(img);
+            img.className = 'w614';
+            img.src = `/static/img/feed/${item.ifeed}/${imgObj.img}`;
 
             return divContainer;
         },
@@ -139,8 +168,5 @@
     }
 
     feedObj.getFeedList();
-
-
-
 
 })();
