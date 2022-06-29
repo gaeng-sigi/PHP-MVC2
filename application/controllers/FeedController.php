@@ -43,7 +43,6 @@ class FeedController extends Controller
                         // chmod("C:/Apache24/PHPgram/static/img/profile/1/test." . $ext, 0755);
                     }
                 }
-
                 // return ["result" => $r];
 
                 // debug 확인.(파일이 등록 됬는지)
@@ -55,6 +54,21 @@ class FeedController extends Controller
                 // }
                 // print "ctnt : " . $_POST["ctnt"] . "<br>";
                 // print "location : " . $_POST["location"] . "<br>";
+                return ["result" => 1];
+
+            case _GET:
+                $page = 1;
+                if(isset($_GET["page"])) {
+                    $page = intval($_GET["page"]);
+                }
+                
+                $startIdx = ($page - 1) * _FEED_ITEM_CNT;
+                $param = [
+                    "startIdx" => $startIdx,
+                    "iuser" => getIuser()
+                ];
+
+                return $this->model->selFeedList($param);
         }
     }
 }
