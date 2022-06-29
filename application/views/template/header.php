@@ -2,7 +2,9 @@
     <div id="globalConst">
         <div class="d-flex flex-column flex-md-row align-items-center">
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
-                <a href="/feed/index">Home</a>
+                <a href="/feed/index">
+                    <img src="/static/svg/logo.svg">
+                </a>
             </div>
             <div class="d-inline-flex flex-grow-1 flex-shrink-0">
             </div>
@@ -21,7 +23,7 @@
 
                     <div class="d-inline-flex me-3">
                         <a href="/dm/index">
-                            <svg aria-label="게시물 공유" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">
+                            <svg aria-label="다이렉트 메세지" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">
                                 <line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line>
                                 <polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon>
                             </svg>
@@ -51,7 +53,7 @@
                             <li><a class="dropdown-item" href="/user/logout">로그아웃</a></li>
                         </ul>
                     </div>
-                    
+
                 </nav>
             </div>
         </div>
@@ -70,9 +72,9 @@
 
             </div>
         </div>
-        
+
         <form class="d-none">
-            <input type="file" accept="image/*" name="imgs" multiple> 
+            <input type="file" accept="image/*" name="imgs" multiple>
         </form>
     </div>
 </div>
