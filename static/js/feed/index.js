@@ -103,6 +103,7 @@
                 this.hideLoading();
             });
         },
+
         makeFeedList: function(list) {
             if(list.length !== 0) {
                 list.forEach(item => {
@@ -125,6 +126,7 @@
 
             this.hideLoading();
         },
+
         makeFeedItem: function(item) {
             console.log(item);
             const divContainer = document.createElement('div');
@@ -164,8 +166,8 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             `;
+
             const divSwiperWrapper = divImgSwiper.querySelector('.swiper-wrapper');
-            
             //TODO : imgList forEach 돌릴 예정
             item.imgList.forEach(function(imgObj) {
                 const divSwiperSlide = document.createElement('div');
@@ -260,7 +262,7 @@
 
             return divContainer;
         },
-
+        
         showLoading: function() { this.loadingElem.classList.remove('d-none'); },
         hideLoading: function() { this.loadingElem.classList.add('d-none'); }
 
