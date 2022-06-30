@@ -66,4 +66,13 @@ class FeedController extends Controller
                 return $list;
         }
     }
+
+    public function fav() {
+        switch (getMethod()) {
+            case _POST:
+                return ["result" => 1];
+            case _DELETE:
+                return ["result" => 1];
+        }
+    }
 }
