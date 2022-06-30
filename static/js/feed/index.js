@@ -75,7 +75,7 @@
     }
 
     function moveToFeedWin(iuser) {
-        location.href = `/user/feenwin?iuser=${iuser}`;
+        location.href = `/user/feedwin?iuser=${iuser}`;
     }
     
     // 피드 사진
@@ -141,7 +141,7 @@
                     <div class="circleimg h40 w40 pointer feedwin">${writerImg}</div>
                 </div>
                 <div class="p-3 flex-grow-1">
-                    <div><span class="pointer feedwin">${item.writer}</span> - ${regDtInfo}</div>
+                    <div><span class="feedwin">${item.writer}</span> - ${regDtInfo}</div>
                     <div>${item.location === null ? '' : item.location}</div>
                 </div>
             `;
