@@ -59,6 +59,7 @@
         </div>
     </header>
 </div>
+
 <!-- New Feed Create Modal -->
 <div class="modal fade" id="newFeedModal" tabindex="-1" aria-labelledby="newFeedModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">

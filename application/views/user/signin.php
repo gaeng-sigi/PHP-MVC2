@@ -11,9 +11,9 @@
         </div>
         <div class="err">
             <?php
-            if (isset($_GET["err"])) {
-                print "로그인을 할 수 없습니다.";
-            }
+                if (isset($_GET["err"])) {
+                    print "로그인을 할 수 없습니다.";
+                }
             ?>
         </div>
         <form action="signin" method="post">

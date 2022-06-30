@@ -1,4 +1,5 @@
 <?php
+
     function getParam($key) {
         return isset($_GET[$key]) ? $_GET[$key] : "";
     }

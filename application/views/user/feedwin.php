@@ -7,8 +7,6 @@
                     <img src='/static/img/profile/<?= $this->data->iuser ?>/<?= $this->data->mainimg ?>' onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.png"'>
                 </div>
             </div>
-
-            <div></div>
         </div>
     </div>
 </div>
