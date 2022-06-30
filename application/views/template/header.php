@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="d-inline-flex flex-grow-1 flex-shrink-0">
-                    <nav class="d-flex flex-grow-1 flex-column flex-md-row justify-content-end">
+                    <nav class="d-flex flex-grow-1 flex-row justify-content-end">
                         <div class="d-inline-flex me-3">
                             <a href="#" id="btnNewFeedModal" data-bs-toggle="modal" data-bs-target="#newFeedModal">
                                 <svg aria-label="새로운 게시물" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24">

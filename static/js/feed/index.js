@@ -74,7 +74,11 @@
         });
     }
 
+    function moveToFeedWin(iuser) {
+        location.href = `/user/feenwin?iuser=${iuser}`;
+    }
     
+    // 피드 사진
     const feedObj = {
         limit: 20,
         itemLength: 0,
@@ -134,13 +138,20 @@
 
             divTop.innerHTML = `
                 <div class="d-flex flex-column justify-content-center">
-                    <div class="circleimg h40 w40">${writerImg}</div>
+                    <div class="circleimg h40 w40 pointer feedwin">${writerImg}</div>
                 </div>
                 <div class="p-3 flex-grow-1">
-                    <div><span class="pointer" onclick="moveToProfile(${item.iuser});">${item.writer}</span> - ${regDtInfo}</div>
+                    <div><span class="pointer feedwin">${item.writer}</span> - ${regDtInfo}</div>
                     <div>${item.location === null ? '' : item.location}</div>
                 </div>
             `;
+
+            const feedWinList = divTop.querySelectorAll('.feedwin');
+            feedWinList.forEach(el => {
+                el.addEventListener("click", () => {
+                    moveToFeedWin(item.iuser);
+                });
+            });
 
             const divImgSwiper = document.createElement('div');
             divContainer.appendChild(divImgSwiper);
@@ -175,6 +186,34 @@
             divBtns.appendChild(heartIcon);
             heartIcon.className = 'fa-heart pointer rem1_5 me-3';
             heartIcon.classList.add(item.isFav === 1 ? 'fas' : 'far');
+            heartIcon.addEventListener('click', e => {
+
+                let method = 'POST';
+                if (item.isFav === 1) { // delete (1은 0으로 바꿔줘야 함)
+                    method = 'DELETE';
+                }
+
+                fetch(`/feed/fav/${item.ifeed}`, {
+                    'method': method,
+                }).then(res => res.json())
+                    .then(res => {
+                        if (res.result) {
+                            item.isFav = 1 - item.isFav;
+                            if (item.isFav === 0) { // 좋아요 취소
+                                heartIcon.classList.remove('fas');
+                                heartIcon.classList.add('far');
+                            } else { // 좋아요 체크
+                                heartIcon.classList.remove('far');
+                                heartIcon.classList.add('fas');
+                            }
+                        } else {
+                            alert('좋아요를 할 수 없습니다.');
+                        }
+                    })
+                    .catch(e => {
+                        alert('네트워크에 이상이 있습니다.');
+                    });
+            });
 
             // 피드 안 다이렉트 메세지.
             const divDm = document.createElement('div');

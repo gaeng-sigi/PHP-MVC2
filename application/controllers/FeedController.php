@@ -12,8 +12,7 @@ class FeedController extends Controller
         return "template/t1.php";
     }
 
-    public function rest()
-    {
+    public function rest() {
         switch (getMethod()) {
             case _POST:
                 if (!is_array($_FILES) || !isset($_FILES["imgs"])) {
@@ -62,17 +61,25 @@ class FeedController extends Controller
                     $imgs = $this->model->selFeedImgList($item);
                     $item->imgList = $imgs;
                 }
-
-                return $list;
+            return $list;
         }
     }
 
     public function fav() {
+        $urlPaths = getUrlPaths();
+        if(!isset($urlPaths[2]))  {
+            exit();
+        }
+        $param = [
+            "ifeed" => intval($urlPaths[2]),
+            "iuser" => getIuser()
+        ];
+
         switch (getMethod()) {
             case _POST:
-                return ["result" => 1];
+                return [_RESULT => $this->model->insFeedFav($param)];
             case _DELETE:
-                return ["result" => 1];
+                return [_RESULT => $this->model->delFeedFav($param)];
         }
     }
 }
