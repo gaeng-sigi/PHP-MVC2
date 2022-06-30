@@ -1,4 +1,5 @@
-(function() {
+(function () {
+    // 피드 올릴때 뜨는 창.(모달)
     const btnNewFeedModal = document.querySelector('#btnNewFeedModal');
     if(btnNewFeedModal) {
         const modal = document.querySelector('#newFeedModal');
@@ -59,6 +60,7 @@
             }
         });
 
+        // 피드 올리는 아이콘 클릭 시 뜨는 내용.
         btnNewFeedModal.addEventListener('click', function() {
             const selFromComBtn = document.createElement('button');
             selFromComBtn.type = 'button';
@@ -144,7 +146,7 @@
             divContainer.appendChild(divImgSwiper);
             divImgSwiper.className = 'swiper item_img';
             divImgSwiper.innerHTML = `
-                <div class="swiper-wrapper"></div>
+                <div class="swiper-wrapper align-items-center"></div>
                 <div class="swiper-pagination"></div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -162,6 +164,58 @@
                 img.className = 'w100p_mw614';
                 img.src = `/static/img/feed/${item.ifeed}/${imgObj.img}`;
             });
+
+            // 
+            const divBtns = document.createElement('div');
+            divContainer.appendChild(divBtns);
+            divBtns.className = 'favCont p-3 d-flex flex-row';
+
+            // 피드 안 좋아요 아이콘.
+            const heartIcon = document.createElement('i');
+            divBtns.appendChild(heartIcon);
+            heartIcon.className = 'fa-heart pointer rem1_5 me-3';
+            heartIcon.classList.add(item.isFav === 1 ? 'fas' : 'far');
+
+            // 피드 안 다이렉트 메세지.
+            const divDm = document.createElement('div');
+            divBtns.appendChild(divDm);
+            divDm.className = 'pointer';
+            divDm.innerHTML = `<svg aria-label="다이렉트 메세지" class="_8-yf5 " color="#262626" fill="#262626" height="24" role="img" viewBox="0 0 24 24" width="24"><line fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2" x1="22" x2="9.218" y1="3" y2="10.083"></line><polygon fill="none" points="11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334" stroke="currentColor" stroke-linejoin="round" stroke-width="2"></polygon></svg>`;
+            
+            // 피드 안 좋아요 개수.
+            const divFav = document.createElement('div');
+            divContainer.appendChild(divFav);
+            divFav.className = 'p-3 d-none';
+
+            const spanFavCnt = document.createElement('span');
+            divFav.appendChild(spanFavCnt);
+            spanFavCnt.className = 'bold';
+            spanFavCnt.innerHTML = `좋아요 ${item.favCnt}개`;
+
+            if(item.favCnt > 0) { divFav.classList.remove('d-none') };
+            
+            // 피드 안 내용.
+            if (item.ctnt !== null && item.ctnt !== '') {
+                const divCtnt = document.createElement('div');
+                divContainer.appendChild(divCtnt);
+                divCtnt.innerText = item.ctnt;
+                divCtnt.className = 'itemCtnt p-3';
+            }
+
+            const divCmt = document.createElement('div');
+            divContainer.appendChild(divCmt);
+            
+            const divCmtList = document.createElement('div');
+            divContainer.appendChild(divCmtList);
+            
+            const divCmtForm = document.createElement('div');
+            divCmt.appendChild(divCmtForm);
+            divCmtForm.className = "d-flex flex-row";
+
+            divCmtForm.innerHTML = `
+                <input type="text" class="flex-grow-1 my_input back_color p-2" placeholder="댓글을 입력하세요.">
+                <button type="button" class="btn btn-outline-primary">등록</button>
+            `;
 
             return divContainer;
         },

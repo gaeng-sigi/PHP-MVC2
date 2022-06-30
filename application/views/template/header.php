@@ -1,14 +1,14 @@
 <div class="header">
     <header class="container py-3">
         <div id="globalConst">
-            <div class="d-flex flex-column flex-md-row align-items-center">
+            <div class="d-flex flex-row align-items-center">
                 <div class="d-inline-flex flex-grow-1 flex-shrink-0">
                     <a href="/feed/index">
                         <img src="/static/svg/logo.svg">
                     </a>
                 </div>
 
-                <div class="d-inline-flex flex-grow-1 flex-shrink-0">
+                <div class="d-inline-flex flex-grow-1 flex-shrink-1">
                 </div>
 
                 <div class="d-inline-flex flex-grow-1 flex-shrink-0">
