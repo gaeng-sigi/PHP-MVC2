@@ -65,4 +65,26 @@
             $this->addAttribute(_MAIN, $this->getView("user/feedwin.php"));
             return "template/t1.php";
         }
+
+        
+        public function follow() {
+
+            switch (getMethod()) {
+                case _POST:
+                    $param = [
+                        'fromiuser' => getIuser(),
+                        'toiuser' => $_POST['toiuser']
+                    ];
+                    $this->model->insUserFollow($param);
+                    return [_RESULT => 1];
+
+                case _DELETE:
+                    $param = [
+                        "fromiuser" => getIuser(),
+                        "toiuser" => $_GET["toiuser"],
+                    ];
+                    $this->model->delUserFollow($param);
+                    return [_RESULT => 1];
+            }
+        }
     }

@@ -44,4 +44,29 @@
 
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
+
+
+
+        //---------------------- Follow -------------------------//
+        
+        public function insUserFollow(&$param) {
+            $sql = "INSERT INTO t_user_follow(fromiuser, toiuser)
+                    VALUES(:fromiuser, :toiuser)";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(array($param["fromiuser"], $param["toiuser"]));
+
+            return $stmt->rowCount();
+        }
+
+        public function delUserFollow(&$param) {
+            $sql = "DELETE FROM t_user_follow
+                    WHERE fromiuser = :fromiuser
+                    AND toiuser = :toiuser";
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(array($param["fromiuser"], $param["toiuser"]));
+
+            return $stmt->rowCount();
+        }
     }

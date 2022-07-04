@@ -65,6 +65,7 @@
         //--------------------------- Fav ----------------------------//
 
         public function insFeedFav(&$param) {
+
             $sql = "INSERT INTO t_feed_fav(ifeed, iuser)
                     VALUES(:ifeed, :iuser)";
 
