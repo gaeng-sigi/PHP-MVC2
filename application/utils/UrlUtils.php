@@ -1,5 +1,9 @@
 <?php
 
+    function getJson() {
+        return json_decode(file_get_contents('php://input'), true);
+    }
+
     function getParam($key) {
         return isset($_GET[$key]) ? $_GET[$key] : "";
     }
