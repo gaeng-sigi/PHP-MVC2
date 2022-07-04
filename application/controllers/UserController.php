@@ -1,6 +1,8 @@
 <?php
     namespace application\controllers;
 
+    use application\libs\Application;
+
     class UserController extends Controller {
 
         // 로그인
@@ -81,7 +83,7 @@
 
                 $list = $this->model->selFeedList($param);
                 foreach ($list as $item) {
-                    $item->imgList = $this->model->selFeedImgList($item);
+                    $item->imgList = Application::getModel("feed")->selFeedImgList($item);
                 }
 
                 return $list;

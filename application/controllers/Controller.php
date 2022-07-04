@@ -4,6 +4,7 @@
 
     class Controller
     {
+        protected $ctx;
         protected $model;
         private static $needLoginUrlArr = [
             "feed",
@@ -36,6 +37,10 @@
                 header("Content-Type:application/json");
                 echo json_encode($view);
             }
+        }
+
+        protected function getModel($key) {
+            
         }
 
         protected function addAttribute($key, $val) {

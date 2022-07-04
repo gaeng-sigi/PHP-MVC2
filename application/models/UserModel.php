@@ -102,5 +102,5 @@
         $stmt->execute(array($param["startIdx"], _FEED_ITEM_CNT));
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-    }
+        }
     }
