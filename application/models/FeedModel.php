@@ -62,6 +62,25 @@
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
 
+
+        public function selFeedAfterReg(&$param)
+        {
+            $sql = "SELECT A.ifeed, A.location, A.ctnt, A.iuser, A.regdt, C.nm
+                    AS writer, C.mainimg, 0
+                    AS favCnt, 0
+                    AS isFav
+
+                    FROM t_feed A INNER JOIN t_user C
+                    ON A.iuser = C.iuser
+                    WHERE A.ifeed = :ifeed
+                    ORDER BY A.ifeed DESC";
+
+
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute(array($param["ifeed"], $param["iuser"]));
+
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
         //--------------------------- Fav ----------------------------//
 
         public function insFeedFav(&$param) {
