@@ -18,6 +18,4 @@ class FeedCmtController extends Controller {
                 return $this->model->selFeedCmtList($param);
         }
     }
-
-    
 }

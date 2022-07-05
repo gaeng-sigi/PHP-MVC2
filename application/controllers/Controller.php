@@ -2,8 +2,7 @@
 
     namespace application\controllers;
 
-    class Controller
-    {
+    class Controller {
         protected $ctx;
         protected $model;
         private static $needLoginUrlArr = [
@@ -12,10 +11,10 @@
         ];
 
         public function __construct($action, $model) {
-            if (!isset($_SESSION)) {
-                session_start();
-            }
+            if (!isset($_SESSION)) { session_start(); }
+
             $urlPaths = getUrl();
+
             foreach (static::$needLoginUrlArr as $url) {
                 if (strpos($urlPaths, $url) === 0 && !isset($_SESSION[_LOGINUSER])) {
                     // header("Location:/user/signin");
@@ -26,6 +25,7 @@
 
             $this->model = $model;
             $view = $this->$action();
+
             if (empty($view) && gettype($view) === "string") {
                 echo "Controller 에러 발생";
                 exit();
@@ -52,6 +52,7 @@
                 header("Location: " . substr($view, 9));
                 exit();
             }
+            
             return _VIEW . $view;
         }
 
