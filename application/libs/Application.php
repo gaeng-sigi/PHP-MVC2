@@ -6,7 +6,6 @@
     require_once "application/utils/FileUtils.php";
 
     class Application {
-        
         public $controller;
         public $action;
         private static $modelList = [];
@@ -27,12 +26,12 @@
             new $controllerName($action, $model);
         }
 
-        public static function getModel($key)
-        {
+        public static function getModel($key) {
             if (!in_array($key, static::$modelList)) {
                 $modelName = 'application\models\\' . $key . 'model';
                 static::$modelList[$key] = new $modelName();
             }
+            
             return static::$modelList[$key];
         }
     }
