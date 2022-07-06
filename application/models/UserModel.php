@@ -98,7 +98,7 @@
                 LIMIT :startIdx, :feedItemCnt";
 
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(array($param["toiuser"], $param["loginiuser"], $param["startIdx"], _FEED_ITEM_CNT));
+        $stmt->execute(array($param["loginiuser"], $param["toiuser"], $param["startIdx"], _FEED_ITEM_CNT));
 
         return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
