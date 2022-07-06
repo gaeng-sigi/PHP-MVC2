@@ -5,7 +5,7 @@
         <div class="d-flex flex-row">
             <div class="d-flex flex-column justify-content-center me-3">
                 <div class="circleimg h150 w150 pointer feedwin">
-                    <img data-bs-toggle="modal" data-bs-target="#changeProfileImgModal" src='/static/img/profile/<?= $this->data->iuser ?>/<?= $this->data->mainimg ?>' onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.png" '>
+                    <img class="profileimg" data-bs-toggle="modal" data-bs-target="#changeProfileImgModal" src='/static/img/profile/<?= $this->data->iuser ?>/<?= $this->data->mainimg ?>' onerror='this.error=null;this.src="/static/img/profile/defaultProfileImg_100.png" '>
                 </div>
             </div>
 
@@ -61,14 +61,10 @@
                 <span class="f-blue bold pointer">사진 업로드</span>
             </div>
             <div class="_modal_item">
-                <span class="f-red bold pointer">현재 사진 삭제</span>
+                <span id="btnDelCurrentProfilePic" class="f-red bold pointer">현재 사진 삭제</span>
             </div>
             <div class="_modal_item">
-                <span class="f-black pointer" data-bs-dismiss="modal">취소</span>
+                <span class="f-black pointer " id="btnProfileImgModalClose" data-bs-dismiss="modal">취소</span>
             </div>
-
-            <form class="d-none">
-                <input type="file" accept="image/*" name="imgs" multiple>
-            </form>
         </div>
     </div>

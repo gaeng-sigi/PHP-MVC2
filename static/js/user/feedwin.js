@@ -6,10 +6,13 @@ if (feedObj) {
     feedObj.getFeedList();
 }
 
-(function() {
+(function () {
+    const spanCntFollower = document.querySelector('#spanCntFollower'); // 팔로우, 팔로우 취소 시 바로 숫자 변경.
     const lData = document.querySelector('#lData');
-
     const btnFollow = document.querySelector('#btnFollow');
+    const btnDelCurrentProfilePic = document.querySelector('#btnDelCurrentProfilePic');
+    const btnProfileImgModalClose = document.querySelector('#btnProfileImgModalClose');
+
     if(btnFollow) {
         btnFollow.addEventListener('click', function() {
             const param = {
@@ -18,7 +21,7 @@ if (feedObj) {
             const follow = btnFollow.dataset.follow;
             const followUrl = '/user/follow';
 
-            const spanCntFollower = document.querySelector('#spanCntFollower'); // 팔로우, 팔로우 취소 시 바로 숫자 변경.
+            
 
             switch(follow) {
                 case '1': //팔로우 취소
@@ -60,6 +63,22 @@ if (feedObj) {
                     break;
             }
         });
+    }
+
+    if (btnDelCurrentProfilePic) {
+        btnDelCurrentProfilePic.addEventListener('click', e => {
+            fetch('/user/profile', { method: 'DELETE' })
+            .then(res => res.json())
+            .then(res => {
+                if (res.result) {
+                    const profileImgList = document.querySelectorAll('.profileimg');
+                    profileImgList.forEach(item => {
+                        item.src = '/static/img/profile/defaultProfileImg_100.png';
+                    })
+                    btnProfileImgModalClose.click();
+                }
+            })
+        })
     }
 
 })();

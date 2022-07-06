@@ -9,7 +9,12 @@ class FeedCmtController extends Controller {
                 $json = getJson();
                 $json["iuser"] = getIuser();
 
-                return [_RESULT => $this->model->insFeedCmt($json)];
+                if (preg_replace('/\s+/', '', $json["cmt"])) {
+                    $json["iuser"] = getIuser();
+                    return [_RESULT => $this->model->insFeedCmt($json)];
+                } else {
+                    return [_RESULT => 0];
+                }
 
             case _GET:
                 $ifeed = isset($_GET["ifeed"]) ? intval($_GET["ifeed"]) : 0;
