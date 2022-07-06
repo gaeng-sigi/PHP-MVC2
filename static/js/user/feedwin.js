@@ -6,27 +6,6 @@ if (feedObj) {
     feedObj.getFeedList();
 }
 
-/*
-function getFeedList() {    
-    if(!feedObj) { return; }
-    feedObj.showLoading();            
-    const param = {
-        page: feedObj.currentPage++,        
-        iuser: url.searchParams.get('iuser')
-    }
-    fetch('/user/feed' + encodeQueryString(param))
-    .then(res => res.json())
-    .then(list => {                
-        feedObj.makeFeedList(list);                
-    })
-    .catch(e => {
-        console.error(e);
-        feedObj.hideLoading();
-    });
-}
-getFeedList();
-*/
-
 (function() {
     const lData = document.querySelector('#lData');
 
