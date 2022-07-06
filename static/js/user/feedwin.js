@@ -1,5 +1,12 @@
-const url = new URL(location.href);
 
+if (feedObj) {
+    const url = new URL(location.href);
+    feedObj.iuser = parseInt(url.searchParams.get('iuser'));
+    feedObj.getFeedUrl = '/user/feed';
+    feedObj.getFeedList();
+}
+
+/*
 function getFeedList() {    
     if(!feedObj) { return; }
     feedObj.showLoading();            
@@ -18,7 +25,7 @@ function getFeedList() {
     });
 }
 getFeedList();
-
+*/
 
 (function() {
     const lData = document.querySelector('#lData');
@@ -29,10 +36,11 @@ getFeedList();
             const param = {
                 toiuser: parseInt(lData.dataset.toiuser)
             };
-            console.log(param);
             const follow = btnFollow.dataset.follow;
-            console.log('follow : ' + follow);
             const followUrl = '/user/follow';
+
+            const spanCntFollower = document.querySelector('#spanCntFollower'); // 팔로우, 팔로우 취소 시 바로 숫자 변경.
+
             switch(follow) {
                 case '1': //팔로우 취소
                     fetch(followUrl + encodeQueryString(param), {method: 'DELETE'})
@@ -40,6 +48,9 @@ getFeedList();
                     .then(res => {                        
                         if(res.result) {
                             btnFollow.dataset.follow = '0';
+
+                            spanCntFollower.innerText = ~~spanCntFollower.innerText - 1;
+                            
                             btnFollow.classList.remove('btn-outline-secondary');
                             btnFollow.classList.add('btn-primary');
                             if(btnFollow.dataset.youme === '1') {
@@ -59,6 +70,9 @@ getFeedList();
                     .then(res => {
                         if(res.result) {
                             btnFollow.dataset.follow = '1';
+
+                            spanCntFollower.innerText = ~~spanCntFollower.innerText + 1;
+
                             btnFollow.classList.remove('btn-primary');
                             btnFollow.classList.add('btn-outline-secondary');
                             btnFollow.innerText = '팔로우 취소';

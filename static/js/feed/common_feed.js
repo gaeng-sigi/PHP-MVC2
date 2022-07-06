@@ -3,6 +3,35 @@ const feedObj = {
     itemLength: 0,
     currentPage: 1,
     swiper: null,
+    getFeedUrl: '',
+    iuser: 0,
+
+    setScrollInfinity: function () {
+        window.addEventListener('scroll', e => {
+            const {
+                scrollTop,
+                scrollHeight,
+                clientHeight
+            } = document.documentElement;
+        })
+    },
+
+    getFeedList: function () {
+        this.showLoading();  
+        const param = {
+        page: this.currentPage++,        
+        iuser: this.iuser
+        }
+        fetch(this.getFeedUrl + encodeQueryString(param))
+        .then(res => res.json())
+        .then(list => {                
+            this.makeFeedList(list);                
+        })
+        .catch(e => {
+            console.error(e);
+            this.hideLoading();
+        });
+    },
 
     refreshSwipe: function() {
         if(this.swiper !== null) { this.swiper = null; }

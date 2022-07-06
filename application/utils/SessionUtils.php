@@ -3,11 +3,11 @@
     session_start();
 
     function getLoginUser() {
-        return $_SESSION[_LOGINUSER];
+        return isset($_SESSION[_LOGINUSER]) ? $_SESSION[_LOGINUSER] : null;
     }
     
     function getIuser() {
-        return getLoginUser()->iuser;
+        return getLoginUser() === null ? 0 : getLoginUser()->iuser;
     }
 
     function getMainImgSrc() {
