@@ -123,10 +123,10 @@
             }
         }
         
-        // 현재 사진 삭제(프로필 사진)
+        
         public function profile() {
             switch(getMethod()) {
-                case _DELETE:
+                case _DELETE: // 현재 사진 삭제(프로필 사진)
                     $loginUser = getLoginUser();
                     if($loginUser && $loginUser->mainimg !== null) {
                         $path = "static/img/profile/{$loginUser->iuser}/{$loginUser->mainimg}";
@@ -140,6 +140,37 @@
                         }
                     }
                 return [_RESULT => 0];
+                
+                case _POST: // 사진 업로드(프로필 사진)
+                    $filenm = $_FILES["img"]["name"];
+                    if (!is_array($_FILES)) { return [_RESULT => 0]; }
+
+                    $loginUser = getLoginUser();
+                    $param = ["iuser" => $loginUser->iuser];
+
+                    if ($loginUser && $loginUser->mainimg !== null) {
+                        $path = "static/img/profile/{$loginUser->iuser}/{$loginUser->mainimg}";
+                        if (file_exists($path)) {
+                            unlink($path);
+                        }
+                    }
+                    $saveDirectory = _IMG_PATH . "/profile/{$loginUser->iuser}";
+
+                    if (!is_dir($saveDirectory)) {
+                        mkdir($saveDirectory, 0777, true);
+                    }
+
+                    $tempName = $_FILES['img']["tmp_name"];
+                    $randomFileNm = getRandomFileNm($filenm);
+
+                    if (move_uploaded_file($tempName, $saveDirectory . "/" . $randomFileNm)) {
+                        $param["mainimg"] = $randomFileNm;
+                        $this->model->updUser($param);
+                        $loginUser->mainimg = $randomFileNm;
+                        return [_RESULT => 1];
+                    }
+
+                    return [_RESULT => 0];
             }
         }
     }

@@ -10,6 +10,8 @@ if (feedObj) {
     const spanCntFollower = document.querySelector('#spanCntFollower'); // 팔로우, 팔로우 취소 시 바로 숫자 변경.
     const lData = document.querySelector('#lData');
     const btnFollow = document.querySelector('#btnFollow');
+
+    const btnUpdCurrentProfilePic = document.querySelector("#btnUpdCurrentProfilePic");
     const btnDelCurrentProfilePic = document.querySelector('#btnDelCurrentProfilePic');
     const btnProfileImgModalClose = document.querySelector('#btnProfileImgModalClose');
 
@@ -20,8 +22,6 @@ if (feedObj) {
             };
             const follow = btnFollow.dataset.follow;
             const followUrl = '/user/follow';
-
-            
 
             switch(follow) {
                 case '1': //팔로우 취소
@@ -62,6 +62,35 @@ if (feedObj) {
                     });
                     break;
             }
+        });
+    }
+
+    if (btnUpdCurrentProfilePic) {
+        btnUpdCurrentProfilePic.addEventListener('click', (e) => {
+            const inputChangeProfile = document.querySelector('#inputChangeProfile');
+            const profileImgList = document.querySelectorAll('.profileimg');
+
+            inputChangeProfile.click();
+            inputChangeProfile.addEventListener('change', (e) => {
+                const imgSource = e.target.files[0];
+                const reader = new FileReader();
+                reader.readAsDataURL(imgSource);
+                reader.onload = function () {
+                    profileImgList.forEach((profileImg) => {
+                        profileImg.src = reader.result;
+                    });
+                };
+                const fData = new FormData();
+                fData.append('img', imgSource);
+                fetch('/user/profile', {
+                    method: 'POST',
+                    body: fData,
+                })
+                .then((res) => res.json())
+                .then((res) => {
+                    btnProfileImgModalClose.click();
+                });
+            });
         });
     }
 

@@ -10,7 +10,10 @@
             </div>
 
             <div class="flex-grow-1 d-flex flex-column justify-content-evenly">
-                <div><?= $this->data->email ?>
+                <div class="d-flex align-items-center flex-row">
+                    <div class="feedUserEmail">
+                        <?= $this->data->email ?>
+                    </div>
                     <?php
                     if ($this->data->iuser === getIuser()) {
                         echo '<button type="button" id="btnModProfile" class="btn btn-outline-secondary">프로필 수정</button>';
@@ -58,7 +61,7 @@
             </div>
 
             <div class="_modal_item">
-                <span class="f-blue bold pointer">사진 업로드</span>
+                <span id="btnUpdCurrentProfilePic" class="f-blue bold pointer">사진 업로드</span>
             </div>
             <div class="_modal_item">
                 <span id="btnDelCurrentProfilePic" class="f-red bold pointer">현재 사진 삭제</span>
@@ -68,3 +71,7 @@
             </div>
         </div>
     </div>
+    <form id="changeProfileForm" class="d-none">
+        <input type="file" accept="image/*" name="img" id="inputChangeProfile">
+    </form>
+</div>

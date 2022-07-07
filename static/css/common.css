@@ -70,3 +70,5 @@ table { border-collapse: collapse; border-spacing: 0; }
 .profile { object-fit: cover; border-radius: 50%; }
 .text_center { text-align: center; }
 .scroll_smooth { scroll-behavior: smooth; }
+
+.feedUserEmail { font-size: 28px; font-weight: lighter; }
