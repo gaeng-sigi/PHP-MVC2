@@ -38,11 +38,7 @@
                 echo json_encode($view);
             }
         }
-
-        protected function getModel($key) {
-            
-        }
-
+        
         protected function addAttribute($key, $val) {
             $this->$key = $val;
         }
