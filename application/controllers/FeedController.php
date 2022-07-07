@@ -14,7 +14,7 @@ class FeedController extends Controller {
 
     public function rest() {
         switch (getMethod()) {
-            case _POST:
+            case _POST: // feed 등록
                 if (!is_array($_FILES) || !isset($_FILES["imgs"])) {
                     return [_RESULT => 0];
                 }
@@ -47,8 +47,7 @@ class FeedController extends Controller {
                 $data->imgList = $this->model->selFeedImgList($param2);
                 return $data;
 
-            // ifeed 좋아요
-            case _GET:
+            case _GET: // feed 좋아요
                 $page = 1;
                 if (isset($_GET["page"])) {
                     $page = intval($_GET["page"]);
