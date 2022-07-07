@@ -1,4 +1,5 @@
 <?php
+
     namespace application\libs;
 
     require_once "application/utils/UrlUtils.php";
@@ -8,7 +9,7 @@
     class Application {
         public $controller;
         public $action;
-        private static $modelList = [];
+        private static $modelList = []; // static 사용 하는 순간 메모리가 올라감. new 와 달리 한 번만 사용.
 
         public function __construct() {        
             $urlPaths = getUrlPaths();
