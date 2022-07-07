@@ -9,7 +9,7 @@ class FeedCmtController extends Controller {
                 $json = getJson();
                 $json["iuser"] = getIuser();
 
-                if (preg_replace('/\s+/', '', $json["cmt"])) {
+                if (preg_replace('/\s+/', '', $json["cmt"])) { // 공백만 있는 댓글 insert 안되게 하는 코드
                     $json["iuser"] = getIuser();
                     return [_RESULT => $this->model->insFeedCmt($json)];
                 } else {

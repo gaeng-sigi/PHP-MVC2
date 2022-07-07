@@ -4,19 +4,15 @@ namespace application\controllers;
 
 use application\libs\Application;
 
-
-class FeedController extends Controller
-{
-    public function index()
-    {
+class FeedController extends Controller {
+    public function index() {
         $this->addAttribute(_JS, ["feed/index", "https://unpkg.com/swiper@8/swiper-bundle.min.js"]);
         $this->addAttribute(_CSS, ["feed/index", "https://unpkg.com/swiper@8/swiper-bundle.min.css"]);
         $this->addAttribute(_MAIN, $this->getView("feed/index.php"));
         return "template/t1.php";
     }
 
-    public function rest()
-    {
+    public function rest() {
         switch (getMethod()) {
             case _POST:
                 if (!is_array($_FILES) || !isset($_FILES["imgs"])) {
@@ -51,6 +47,7 @@ class FeedController extends Controller
                 $data->imgList = $this->model->selFeedImgList($param2);
                 return $data;
 
+            // ifeed 좋아요
             case _GET:
                 $page = 1;
                 if (isset($_GET["page"])) {
