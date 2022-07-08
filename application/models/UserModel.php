@@ -6,12 +6,12 @@
     class UserModel extends Model {
         public function insUser(&$param) {
             $sql = "INSERT INTO t_user
-                    ( email, pw, nm ) 
+                    ( email, pw, nm, uip) 
                     VALUES 
-                    ( :email, :pw, :nm )";
+                    ( :email, :pw, :nm, :uip )";
 
             $stmt = $this->pdo->prepare($sql);
-            $stmt->execute(array($param["email"], $param["pw"], $param["nm"]));
+            $stmt->execute(array($param["email"], $param["pw"], $param["nm"], $param["uip"]));
 
             return $stmt->rowCount();
             

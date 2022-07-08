@@ -43,7 +43,8 @@
                     $param = [
                         "email" => $_POST["email"],
                         "pw" => $_POST["pw"],
-                        "nm" => $_POST["nm"]
+                        "nm" => $_POST["nm"],
+                        "uip" => $_POST["uip"]
                     ];
 
                     // 비밀번호 암호화
